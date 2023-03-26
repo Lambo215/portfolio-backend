@@ -1,5 +1,5 @@
 ### BUILD image
-FROM maven:3-jdk-11 as builder
+FROM maven:3-jdk-19 as builder
 #Copy Custom Maven settings
 #COPY settings.xml /root/.m2/
 # create app folder for sources
@@ -15,7 +15,7 @@ COPY src /build/src
 RUN mvn package
 
 
-FROM openjdk:11-slim as runtime
+FROM openjdk:19-slim as runtime
 EXPOSE 8080
 #Set app home folder
 ENV APP_HOME /app
