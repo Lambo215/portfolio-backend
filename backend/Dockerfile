@@ -1,5 +1,5 @@
 ### BUILD image
-FROM maven:3-jdk-19 as builder
+FROM maven:3.8.7-eclipse-temurin-19 as builder
 #Copy Custom Maven settings
 #COPY settings.xml /root/.m2/
 # create app folder for sources
