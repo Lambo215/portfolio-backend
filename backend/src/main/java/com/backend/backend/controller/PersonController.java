@@ -16,7 +16,7 @@ import com.backend.backend.model.Person;
 
 import com.backend.backend.service.IPersonService;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class PersonController {
 
@@ -32,6 +32,12 @@ public class PersonController {
     @ResponseBody
     public List<Person> getPerson() {
         return personServ.getPerson();
+    }
+
+    @GetMapping("/person/{id}")
+    public Person getPerson(@PathVariable Long id) {
+        return personServ.searchPerson(id);
+
     }
 
     @DeleteMapping("/delete/person/{id}")

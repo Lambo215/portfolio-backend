@@ -17,7 +17,7 @@ import com.backend.backend.model.Skills;
 import com.backend.backend.service.IPersonService;
 import com.backend.backend.service.ISkillsService;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class SkillsController {
 
@@ -34,13 +34,13 @@ public class SkillsController {
         skillServ.saveSkill(skill);
     }
 
-    @GetMapping("/view/skills")
+    @GetMapping("/skills")
     @ResponseBody
     public List<Skills> getSkill() {
         return skillServ.getSkill();
     }
 
-    @DeleteMapping("/delete/skills/{id}")
+    @DeleteMapping("/skills/{id}")
     public void deleteSkill(@PathVariable Long id) {
         skillServ.deleteSkill(id);
     }

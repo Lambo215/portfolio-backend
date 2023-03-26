@@ -1,6 +1,5 @@
 package com.backend.backend.model;
 
-import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -24,7 +23,7 @@ public class Person {
 
     private String nombre;
     private String apellido;
-    private Date fechaNac;
+    private String fechaNac;
     private String about_me;
 
     @OneToMany(mappedBy = "person")
@@ -43,7 +42,7 @@ public class Person {
 
     }
 
-    public Person(Long id, String nombre, String apellido, Date fechaNac, String about_me) {
+    public Person(Long id, String nombre, String apellido, String fechaNac, String about_me) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;

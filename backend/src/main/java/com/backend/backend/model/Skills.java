@@ -24,6 +24,7 @@ public class Skills {
     private Long id;
 
     private String nombreSkill;
+    private Long valor;
 
     @ManyToOne
     @JoinColumn(name = "person_id")
@@ -32,15 +33,16 @@ public class Skills {
 
     public void setPerson(Person person) {
         this.person = person;
-    
-      }
+
+    }
 
     public Skills() {
 
     }
 
-    public Skills(Long id, String nombreSkill) {
+    public Skills(Long id, String nombreSkill, Long valor) {
         this.id = id;
         this.nombreSkill = nombreSkill;
+        this.valor = valor;
     }
 }

@@ -1,7 +1,5 @@
 package com.backend.backend.model;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -31,8 +29,8 @@ public class LaboralExperience {
 
   private String nombreEmpresa;
   private boolean esTrabajoActual;
-  private Date fechaInicio;
-  private Date fechaFin;
+  private String fechaInicio;
+  private String fechaFin;
   private String descripcion;
 
   public void setPerson(Person person) {
@@ -44,7 +42,7 @@ public class LaboralExperience {
 
   }
 
-  public LaboralExperience(Long id, String nombreEmpresa, Boolean esTrabajoActual, Date fechaInicio, Date fechaFin,
+  public LaboralExperience(Long id, String nombreEmpresa, Boolean esTrabajoActual, String fechaInicio, String fechaFin,
       String descripcion) {
     this.id = id;
     this.nombreEmpresa = nombreEmpresa;

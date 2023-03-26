@@ -1,5 +1,7 @@
 package com.backend.backend.Security;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,9 +14,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import lombok.AllArgsConstructor;
 
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @Configuration
 @AllArgsConstructor
 public class WebSecurityConfig {
@@ -26,15 +35,16 @@ public class WebSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
         JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
-        jwtAuthenticationFilter.setFilterProcessesUrl("/login");
-        
+        jwtAuthenticationFilter.setFilterProcessesUrl("/*");
 
         return http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/view/**").permitAll()
+                .requestMatchers("/**").permitAll()
                 .anyRequest()
                 .authenticated()
+                .and()
+                .cors()
                 .and()
                 .httpBasic()
                 .and()
@@ -47,7 +57,6 @@ public class WebSecurityConfig {
 
     }
 
-
     @Bean
     AuthenticationManager authManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
@@ -59,12 +68,24 @@ public class WebSecurityConfig {
     }
 
     @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("/*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/*", configuration);
+        return source;
+    }
+
+    @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-   // public static void main(String[] args) {
-   //   System.out.println("pass: " + new BCryptPasswordEncoder().encode("yoprogramo"));
-   // }
+    // public static void main(String[] args) {
+    // System.out.println("pass: " + new
+    // BCryptPasswordEncoder().encode("yoprogramo"));
+    // }
 
 }

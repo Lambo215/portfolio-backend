@@ -17,7 +17,7 @@ import com.backend.backend.model.Proyects;
 import com.backend.backend.service.IPersonService;
 import com.backend.backend.service.IProyectsService;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class ProyectsController {
 

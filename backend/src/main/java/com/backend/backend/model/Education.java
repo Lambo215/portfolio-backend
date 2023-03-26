@@ -4,8 +4,6 @@ import lombok.Setter;
 
 import lombok.Getter;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -33,20 +31,20 @@ public class Education {
     private Person person;
 
     private String nombreInstitucion;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private String fechaInicio;
+    private String fechaFin;
     private String descripcion;
 
     public void setPerson(Person person) {
         this.person = person;
-    
-      }
+
+    }
 
     public Education() {
 
     }
 
-    public Education(Long id, String nombreInstitucion, Date fechaInicio, Date fechaFin, String descripcion,
+    public Education(Long id, String nombreInstitucion, String fechaInicio, String fechaFin, String descripcion,
             Person person) {
         this.id = id;
         this.nombreInstitucion = nombreInstitucion;
