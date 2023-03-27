@@ -38,13 +38,12 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setFilterProcessesUrl("/*");
 
         return http
-                .csrf().disable()
+                .csrf().disable().cors().configurationSource(corsConfigurationSource())
+                .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/**").permitAll()
                 .anyRequest()
                 .authenticated()
-                .and()
-                .cors()
                 .and()
                 .httpBasic()
                 .and()
@@ -57,7 +56,6 @@ public class WebSecurityConfig {
 
     }
 
-    @Bean
     AuthenticationManager authManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userDetailsService)
