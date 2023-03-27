@@ -56,6 +56,7 @@ public class WebSecurityConfig {
 
     }
 
+    @Bean
     AuthenticationManager authManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userDetailsService)
@@ -65,7 +66,6 @@ public class WebSecurityConfig {
 
     }
 
-    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
