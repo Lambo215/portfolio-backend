@@ -16,7 +16,7 @@ import com.backend.backend.model.Person;
 
 import com.backend.backend.service.IPersonService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class PersonController {
 
